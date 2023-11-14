@@ -1,0 +1,143 @@
+/**********************************************************************
+
+                            CIS121  Fall 2023
+
+Type of Assignment:        Lab 7
+
+Problem Number: 3
+
+Programmer: J.T. Sundara
+
+Section:7
+
+Purpose: This program will play rock, papper, scissors with you
+
+**********************************************************************/
+
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+using namespace std;
+//function prototypes
+int getcomputerchoice();
+int getuserchoice();
+void determinewinner(int userchoice, int computerchoice);
+void displaychoice(int userchoice, int computerchoice);
+
+int main() 
+{
+    srand(static_cast<unsigned int>(time(0))); //seed for number generator
+
+    cout << "Assignment #3 by J.T. Sundara" << endl << endl;
+
+    int userchoice;
+    do {
+        userchoice = getuserchoice(); //set equal to getuserchoice to display game menu + set the loop
+
+        if (userchoice != 4) {
+            //set variable equal to random number generator for computers choice
+            int computerchoice = getcomputerchoice();
+            //display what user and computer has selected
+            displaychoice(userchoice, computerchoice);
+            //display the winner from both selections
+            determinewinner(userchoice, computerchoice);
+        }
+    } while (userchoice != 4); // loop will repeat as long as 4 in not inputted by user
+
+    cout << "Thank you for playing!";
+    return 0;
+}
+
+//random number generator
+int getcomputerchoice() {
+    return (rand() % 3) + 1; // generate range 1-3
+}
+
+//display game menu and options funtion
+int getuserchoice() 
+{
+    int choice;
+
+    do {
+        cout << "Game Menu" << endl;
+        cout << "-----------" << endl;
+        cout << "1.Rock" << endl;
+        cout << "2.Paper" << endl;
+        cout << "3.Scissors" << endl;
+        cout << "4.Quit Game" << endl;
+        cout << "Choose your weapon: ";
+        cin >> choice;
+
+        //invalid number error
+        if (choice < 1 || choice>4) {
+            cout << "Invalid option, Enter a number (1-4)" << endl;
+        }
+
+    } while (choice < 1 || choice>4);
+    return choice;
+}
+    // Winner void funtion
+void determinewinner(int userchoice, int computerchoice)
+{
+    //Tie option
+    if (userchoice == computerchoice) {
+        cout << "Tie! try again" << endl << endl;
+    }
+    //all Win options
+    //Note to Self: 1.Rock 2.Paper 3.Scissors
+    else if ((userchoice == 1 && computerchoice == 3) || (userchoice == 2 && computerchoice ==1) ||
+        (userchoice == 3 && computerchoice == 2)) {
+
+        //User Winner Display
+        cout << "You win! ";
+        switch (userchoice) {
+        case 1: cout << "Rock beats scissors!\n" << endl;
+            break;
+        case 2: cout << "Paper beats rock!\n" << endl;
+            break;
+        case 3: cout << "scissors beats paper!\n" << endl;
+            break;
+        }
+        //Computer Winner Display
+    }
+    else {
+        cout << "AI Wins! ";
+        switch (computerchoice) {
+        case 1: cout << "Rock beats scissors!\n" << endl;
+            break;
+        case 2: cout << "Paper beats rock! \n" << endl;
+            break;
+        case 3: cout << "scissors beats paper!\n" << endl;
+            break;
+        }
+    }
+}
+
+    //Selection Display Void Function
+    void displaychoice(int userchoice, int computerchoice) 
+    {
+        //User selection display
+        cout << "You picked: ";
+        switch (userchoice) {
+        case 1:cout << "Rock";
+            break;
+        case 2: cout << "Paper";
+            break;
+        case 3: cout << "Scissors";
+            break;
+        }
+
+        //Computer selection display
+        cout << endl<<"AI has selected: ";
+        switch (computerchoice) {
+        case 1:cout << "Rock";
+            break;
+        case 2:cout << "Paper";
+            break;
+        case 3: cout << "Scissors";
+            break;
+        }
+        cout << endl;
+    }
+    

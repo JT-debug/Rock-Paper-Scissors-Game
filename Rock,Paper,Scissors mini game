@@ -1,17 +1,6 @@
 /**********************************************************************
-
-                            CIS121  Fall 2023
-
-Type of Assignment:        Lab 7
-
-Problem Number: 3
-
 Programmer: J.T. Sundara
-
-Section:7
-
 Purpose: This program will play rock, papper, scissors with you
-
 **********************************************************************/
 
 #include <iostream>
